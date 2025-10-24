@@ -19,7 +19,7 @@ namespace Test_PoojaDoshi.Repositories
             _logger = logger;
         }
 
-        public async Task<IReadOnlyList<Brewery>> GetAllAsync(CancellationToken cancellationToken = default)
+        public async Task<IReadOnlyList<Brewery>> GetAllAsync()
         {
             if (_cache.TryGetValue(CacheKey, out IReadOnlyList<Brewery>? cached) && cached is not null)
             {
@@ -42,10 +42,10 @@ namespace Test_PoojaDoshi.Repositories
                 while (page <= maxPages)
                 {
                     var url = $"/v1/breweries?per_page={perPage}&page={page}";
-                    using var resp = await _httpClient.GetAsync(url, cancellationToken);
+                    using var resp = await _httpClient.GetAsync(url);
                     resp.EnsureSuccessStatusCode();
-                    var stream = await resp.Content.ReadAsStreamAsync(cancellationToken);
-                    var nodes = await JsonSerializer.DeserializeAsync<List<JsonElement>>(stream, options, cancellationToken)
+                    var stream = await resp.Content.ReadAsStreamAsync();
+                    var nodes = await JsonSerializer.DeserializeAsync<List<JsonElement>>(stream, options)
                                 ?? new List<JsonElement>();
 
                     if (nodes.Count == 0) break;

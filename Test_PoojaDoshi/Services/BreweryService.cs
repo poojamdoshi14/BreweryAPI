@@ -14,9 +14,9 @@ namespace Test_PoojaDoshi.Services
             _logger = logger;
         }
 
-        public async Task<IEnumerable<Brewery>> SearchAsync(BrewerySearchRequest request, CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<Brewery>> SearchAsync(BrewerySearchRequest request)
         {
-            var items = await _repository.GetAllAsync(cancellationToken);
+            var items = await _repository.GetAllAsync();
 
             IEnumerable<Brewery> q = items;
 

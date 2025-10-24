@@ -31,8 +31,7 @@ namespace Test_PoojaDoshi.Controllers
             [FromQuery] string? sortBy,
             [FromQuery] bool desc = false,
             [FromQuery] int? limit = 500,
-            [FromQuery] int? offset = 0,
-            CancellationToken ct = default)
+            [FromQuery] int? offset = 0)
         {
             try
             {
@@ -48,7 +47,7 @@ namespace Test_PoojaDoshi.Controllers
                     Offset = offset
                 };
 
-                var result = await _service.SearchAsync(req, ct);
+                var result = await _service.SearchAsync(req);
                 return Ok(result);
             }
             catch (Exception ex)

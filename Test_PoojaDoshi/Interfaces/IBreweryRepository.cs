@@ -4,6 +4,6 @@ namespace Test_PoojaDoshi.Interfaces
 {
     public interface IBreweryRepository
     {
-        Task<IReadOnlyList<Brewery>> GetAllAsync(CancellationToken cancellationToken = default);
+        Task<IReadOnlyList<Brewery>> GetAllAsync();
     }
 }
