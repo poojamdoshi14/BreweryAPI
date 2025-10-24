@@ -1,0 +1,6 @@
+@Test_PoojaDoshi_HostAddress = http://localhost:5102
+
+GET {{Test_PoojaDoshi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
